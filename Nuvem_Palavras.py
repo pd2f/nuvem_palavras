@@ -12,6 +12,7 @@ class  Nuvem:
         self.descricao = None
         self.doc = None
         self.votos = None
+        self.color = "white"
         self.texto = ''
         self.pln = spacy.load('pt_core_news_sm')
         self.classes_gramaticais = ['ADJ','ADP','PUNCT','ADV','AUX','SYM','INTJ','CONJ','X','NOUN','DET','PROPN','NUM','VERB','PART','PRON','SCONJ']
@@ -19,6 +20,9 @@ class  Nuvem:
     def set_documento(self, array_textos):
         self.doc = array_textos
         self.texto_normalizado()
+    
+    def set_color(self,color):
+        self.color = color
         
     def set_votos(self, array_votos):
         self.votos = array_votos
@@ -30,8 +34,8 @@ class  Nuvem:
     def set_classes_gramaticais(self,array_classes_gramaticais):
         self.classes_gramaticais = array_classes_gramaticais
         
-    def generate(self,color="white"):
-        self.wordcloud = WordCloud(max_font_size=50, background_color=color).generate(self.texto)
+    def generate(self):
+        self.wordcloud = WordCloud(max_font_size=50, background_color=self.color).generate(self.texto)
         
     def show_jupiter(self):
         self.generate()
